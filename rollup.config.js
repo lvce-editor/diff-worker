@@ -8,7 +8,7 @@ export default {
     propertyReadSideEffects: false,
   },
   output: {
-    file: 'dist/dist/index.js',
+    file: 'dist/dist/diffWorkerMain.js',
     format: 'es',
     freeze: false,
     generatedCode: {
