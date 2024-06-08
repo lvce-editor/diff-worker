@@ -58,7 +58,7 @@ await bundleJs({
   cwd: root,
   from: 'src/diffWorkerMain.ts',
   platform: 'node',
-  outFile: 'dist/dist/index.js',
+  outFile: 'dist/dist/diffWorkerMain.js',
   external: [],
 })
 
@@ -70,8 +70,9 @@ delete packageJson.scripts
 delete packageJson.devDependencies
 delete packageJson.prettier
 delete packageJson.jest
+delete packageJson.xo
 packageJson.version = version
-packageJson.main = 'dist/index.js'
+packageJson.main = 'dist/diffWorkerMain.js'
 
 await writeJson(join(dist, 'package.json'), packageJson)
 
