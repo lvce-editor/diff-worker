@@ -4,7 +4,13 @@ import type { Change } from '../Change/Change.ts'
 import * as DiffType from '../DiffType/DiffType.ts'
 import * as MakeDiffMap from '../MakeDiffMap/MakeDiffMap.ts'
 
-export const diff = (linesA: readonly string[], linesB: readonly string[]) => {
+export const diff = (
+  linesA: readonly string[],
+  linesB: readonly string[],
+): {
+  changesLeft: readonly Change[]
+  changesRight: readonly Change[]
+} => {
   // create hashmaps of which line corresponds to which indices
   const { oa, na } = MakeDiffMap.makeDiffMap(linesA, linesB)
 
