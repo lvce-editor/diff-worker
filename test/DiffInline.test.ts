@@ -38,23 +38,11 @@ test('two insertions', () => {
 test('three insertions', () => {
   const linesA = []
   const linesB = ['a', 'b', 'c']
-  expect(DiffInline.diffInline(linesA, linesB)).toEqual({
-    changesLeft: [],
-    changesRight: [
-      {
-        index: 0,
-        type: DiffType.Insertion,
-      },
-      {
-        index: 1,
-        type: DiffType.Insertion,
-      },
-      {
-        index: 2,
-        type: DiffType.Insertion,
-      },
-    ],
-  })
+  expect(DiffInline.diffInline(linesA, linesB)).toEqual([
+    { leftIndex: -1, rightIndex: 0, type: 1 },
+    { leftIndex: -1, rightIndex: 1, type: 1 },
+    { leftIndex: -1, rightIndex: 2, type: 1 },
+  ])
 })
 
 test('insertion at start', () => {
