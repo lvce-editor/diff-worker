@@ -42,5 +42,23 @@ export const diffInline = (linesLeft: readonly string[], linesRight: readonly st
       })
     }
   }
+  while (leftIndex < lengthLeft) {
+    const left = changesLeft[leftIndex]
+    merged.push({
+      leftIndex,
+      rightIndex: -1,
+      type: left.type,
+    })
+    leftIndex++
+  }
+  while (rightIndex < lengthRight) {
+    const right = changesRight[rightIndex]
+    merged.push({
+      leftIndex: -1,
+      rightIndex,
+      type: right.type,
+    })
+    rightIndex++
+  }
   return merged
 }
