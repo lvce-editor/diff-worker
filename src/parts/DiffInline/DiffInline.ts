@@ -1,8 +1,11 @@
+import * as Assert from '../Assert/Assert.ts'
 import * as Diff from '../Diff/Diff.ts'
 import * as DiffType from '../DiffType/DiffType.ts'
 import type { InlineDiffItem } from '../InlineDiffItem/InlineDiffItem.ts'
 
 export const diffInline = (linesLeft: readonly string[], linesRight: readonly string[]): readonly InlineDiffItem[] => {
+  Assert.array(linesLeft)
+  Assert.array(linesRight)
   const { changesLeft, changesRight } = Diff.diff(linesLeft, linesRight)
   const lengthLeft = linesLeft.length
   const lengthRight = linesRight.length
@@ -54,6 +57,7 @@ export const diffInline = (linesLeft: readonly string[], linesRight: readonly st
         rightIndex,
         type: right,
       })
+      rightIndex++
     }
   }
   while (leftIndex < lengthLeft) {
