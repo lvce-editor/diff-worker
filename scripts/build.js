@@ -68,6 +68,7 @@ const packageJson = await readJson(join(root, 'package.json'))
 
 delete packageJson.scripts
 delete packageJson.devDependencies
+delete packageJson.directories
 delete packageJson.prettier
 delete packageJson.jest
 delete packageJson.xo
