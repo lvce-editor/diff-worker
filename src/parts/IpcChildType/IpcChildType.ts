@@ -5,8 +5,5 @@ export const Auto = () => {
   if (globalThis.acceptPort) {
     return MessagePort
   }
-  if (globalThis.acceptReferencePort) {
-    return ReferencePort
-  }
   return ModuleWorkerAndMessagePort
 }
