@@ -1,6 +1,6 @@
 const commands = Object.create(null)
 
-export const registerCommand = (key: string, fn: any) => {
+const registerCommand = (key: string, fn: any) => {
   commands[key] = fn
 }
 
