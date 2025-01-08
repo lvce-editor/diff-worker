@@ -3,7 +3,7 @@ import { join } from 'node:path'
 import * as rollup from 'rollup'
 
 const getExternal = (babelExternal, initialExternal) => {
-  const external = [...initialExternal]
+  const external = [...initialExternal, 'ws', 'electron']
   if (babelExternal) {
     external.push(/babel-parser\.js$/)
   }
@@ -88,6 +88,7 @@ export const bundleJs = async ({
         constBindings: true,
         objectShorthand: true,
       },
+
       hoistTransitiveImports: false,
     }
     await result.write(outputOptions)
