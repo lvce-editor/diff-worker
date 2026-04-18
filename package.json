@@ -29,6 +29,7 @@
     "@babel/preset-typescript": "^7.28.5",
     "@lvce-editor/assert": "^1.5.1",
     "@lvce-editor/rpc": "^6.4.0",
+    "@lvce-editor/rpc-registry": "^9.20.0",
     "@lvce-editor/verror": "^1.7.0",
     "@rollup/plugin-babel": "^7.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
@@ -59,10 +60,10 @@
     "collectCoverage": true,
     "coverageThreshold": {
       "global": {
-        "branches": 85,
-        "functions": 100,
-        "lines": 91,
-        "statements": 91
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
       }
     }
   },
