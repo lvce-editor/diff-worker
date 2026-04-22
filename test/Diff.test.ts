@@ -84,6 +84,64 @@ test('insertion at start', () => {
   })
 })
 
+test('identical repeated lines stay aligned', () => {
+  const linesA = ['}', '}']
+  const linesB = ['}', '}']
+  expect(Diff.getAlignmentMaps(linesA, linesB)).toEqual({
+    oa: [0, 1],
+    na: [0, 1],
+  })
+})
+
+test('aligns repeated braces and blank lines inside a changed css block', () => {
+  const linesA = `.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: #202020;
+}
+
+.form input::placeholder {
+  color: #888;
+}
+
+.form button:hover {
+  background: #2b2b2b;
+}
+`
+    .trimEnd()
+    .split('\n')
+  const linesB = `.form {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 12px;
+  color: #111;
+}
+
+.form input::placeholder {
+  color: #555;
+  opacity: 1;
+}
+
+.form button:hover,
+.form button:focus-visible {
+  background: #111;
+  outline: 2px solid #fff;
+}
+`
+    .trimEnd()
+    .split('\n')
+
+  const { oa, na } = Diff.getAlignmentMaps(linesA, linesB)
+
+  expect(oa[9]).toBe(10)
+  expect(oa[10]).toBe(11)
+  expect(oa[13]).toBe(16)
+  expect(na[10]).toBe(9)
+  expect(na[11]).toBe(10)
+  expect(na[16]).toBe(13)
+})
+
 test.skip('insertion at end', () => {
   const linesA = ['a', 'b']
   const linesB = ['a', 'b', 'c']
