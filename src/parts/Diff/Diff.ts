@@ -4,20 +4,31 @@ import type { Change } from '../Change/Change.ts'
 import * as DiffType from '../DiffType/DiffType.ts'
 import * as MakeDiffMap from '../MakeDiffMap/MakeDiffMap.ts'
 
-export const diff = (
+export type AlignmentEntry =
+  | number
+  | {
+      nc: number
+      oc: number
+      olno: number
+    }
+
+export const getAlignmentMaps = (
   linesA: readonly string[],
   linesB: readonly string[],
 ): {
-  changesLeft: readonly Change[]
-  changesRight: readonly Change[]
+  oa: AlignmentEntry[]
+  na: AlignmentEntry[]
 } => {
   // create hashmaps of which line corresponds to which indices
-  const { oa, na } = MakeDiffMap.makeDiffMap(linesA, linesB)
+  const { oa, na } = MakeDiffMap.makeDiffMap(linesA, linesB) as {
+    oa: AlignmentEntry[]
+    na: AlignmentEntry[]
+  }
 
   // pass 3
   for (let i = 0; i < na.length; i++) {
     const entry = na[i]
-    if (entry.nc === 1 && entry.oc === 1) {
+    if (typeof entry !== 'number' && entry.nc === 1 && entry.oc === 1) {
       na[i] = entry.olno
       oa[entry.olno] = i
     }
@@ -40,6 +51,18 @@ export const diff = (
       oa[j - 1] = i - 1
     }
   }
+
+  return { oa, na }
+}
+
+export const diff = (
+  linesA: readonly string[],
+  linesB: readonly string[],
+): {
+  changesLeft: readonly Change[]
+  changesRight: readonly Change[]
+} => {
+  const { oa, na } = getAlignmentMaps(linesA, linesB)
 
   const changesRight: Change[] = []
   const changesLeft: Change[] = []
