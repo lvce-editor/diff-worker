@@ -49,32 +49,40 @@ test('insertion at start', () => {
   const linesA = ['b', 'c']
   const linesB = ['a', 'b', 'c']
   expect(DiffInline.diffInline(linesA, linesB)).toEqual([
-    { leftIndex: 0, rightIndex: 0, type: 0 },
-    { leftIndex: 1, rightIndex: 0, type: 1 },
-    { leftIndex: 1, rightIndex: 1, type: 0 },
-    { leftIndex: -1, rightIndex: 2, type: 0 },
+    { leftIndex: -1, rightIndex: 0, type: 1 },
+    { leftIndex: 0, rightIndex: 1, type: 0 },
+    { leftIndex: 1, rightIndex: 2, type: 0 },
   ])
 })
 
-test.skip('insertion at end', () => {
+test('insertion at end', () => {
   const linesA = ['a', 'b']
   const linesB = ['a', 'b', 'c']
-  const expected = [0, 0, 1, 1]
-  expect(DiffInline.diffInline(linesA, linesB)).toEqual(new Uint32Array(expected))
+  expect(DiffInline.diffInline(linesA, linesB)).toEqual([
+    { leftIndex: 0, rightIndex: 0, type: 0 },
+    { leftIndex: 1, rightIndex: 1, type: 0 },
+    { leftIndex: -1, rightIndex: 2, type: 1 },
+  ])
 })
 
-test.skip('insertion at start and end', () => {
+test('insertion at start and end', () => {
   const linesA = ['c']
   const linesB = ['a', 'b', 'c', 'd']
-  const expected = [0, 0, 1, 2, 1, 0, 4, 4]
-  expect(DiffInline.diffInline(linesA, linesB)).toEqual(new Uint32Array(expected))
+  expect(DiffInline.diffInline(linesA, linesB)).toEqual([
+    { leftIndex: -1, rightIndex: 0, type: 1 },
+    { leftIndex: -1, rightIndex: 1, type: 1 },
+    { leftIndex: 0, rightIndex: 2, type: 0 },
+    { leftIndex: -1, rightIndex: 3, type: 1 },
+  ])
 })
 
-test.skip('replacement', () => {
+test('replacement', () => {
   const linesA = ['a']
   const linesB = ['b']
-  const expected = [1, 1, 1, 1]
-  expect(DiffInline.diffInline(linesA, linesB)).toEqual(new Uint32Array(expected))
+  expect(DiffInline.diffInline(linesA, linesB)).toEqual([
+    { leftIndex: 0, rightIndex: 0, type: 2 },
+    { leftIndex: 0, rightIndex: 0, type: 1 },
+  ])
 })
 
 test.skip('word replacement', () => {
