@@ -26,7 +26,7 @@
     "url": "https://github.com/lvce-editor/diff-worker.git"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^8.0.1",
+    "@babel/preset-typescript": "^7.29.7",
     "@lvce-editor/assert": "^1.7.0",
     "@lvce-editor/rpc": "^6.8.0",
     "@lvce-editor/rpc-registry": "^9.34.0",
