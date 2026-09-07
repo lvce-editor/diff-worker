@@ -26,19 +26,19 @@
     "url": "https://github.com/lvce-editor/diff-worker.git"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.29.7",
-    "@lvce-editor/assert": "^1.7.0",
-    "@lvce-editor/rpc": "^6.8.0",
-    "@lvce-editor/rpc-registry": "^9.34.0",
+    "@babel/preset-typescript": "^8.0.1",
+    "@lvce-editor/assert": "^1.9.0",
+    "@lvce-editor/rpc": "^6.19.3",
+    "@lvce-editor/rpc-registry": "^9.63.1",
     "@lvce-editor/verror": "^1.7.0",
     "@rollup/plugin-babel": "^7.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@types/jest": "^30.0.0",
-    "execa": "^9.6.1",
-    "jest": "^30.4.2",
-    "prettier": "^3.9.5",
+    "execa": "^10.0.1",
+    "jest": "^30.5.1",
+    "prettier": "^3.9.6",
     "rollup": "^4.17.2",
-    "ts-jest": "^29.4.11",
+    "ts-jest": "^29.4.12",
     "typescript": "^6.0.3"
   },
   "jest": {
